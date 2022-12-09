@@ -8,7 +8,7 @@
       <link href="/2022/12/09/0002_page/"/>
       <url>/2022/12/09/0002_page/</url>
       
-        <content type="html"><![CDATA[<h2 id="社交图标"><a href="#社交图标" class="headerlink" title="社交图标"></a>社交图标</h2><div class='checkbox red checked'><input type="checkbox" checked="checked"/>            <p>加上leetcode图标</p>            </div><div class='checkbox yellow checked'><input type="checkbox" checked="checked"/>            <p>引入彩色图标</p>            </div><div class='checkbox green checked'><input type="checkbox" checked="checked"/>            <p>引入动态图标</p>            </div><h2 id="首页文章图片"><a href="#首页文章图片" class="headerlink" title="首页文章图片"></a>首页文章图片</h2><div class='checkbox cyan'><input type="checkbox" />            <p>绘制个性化封面</p>            </div><div class='checkbox blue'><input type="checkbox" />            <p>应用封面</p>            </div><h2 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h2><div class='checkbox gray checked'><input type="checkbox" checked="checked"/>            <p>引入彩色图标</p>            </div><div class='checkbox red checked'><input type="checkbox" checked="checked"/>            <p>引入动态图标</p>            </div>]]></content>
+        <content type="html"><![CDATA[<h2 id="社交图标"><a href="#社交图标" class="headerlink" title="社交图标"></a>社交图标</h2><div class='checkbox red checked'><input type="checkbox" checked="checked"/>            <p>加上leetcode图标</p>            </div><div class='checkbox yellow checked'><input type="checkbox" checked="checked"/>            <p>引入彩色图标</p>            </div><div class='checkbox green checked'><input type="checkbox" checked="checked"/>            <p>引入动态图标</p>            </div><div class='checkbox blue'><input type="checkbox" />            <p>深色模式适配</p>            </div><h2 id="首页文章图片"><a href="#首页文章图片" class="headerlink" title="首页文章图片"></a>首页文章图片</h2><div class='checkbox cyan'><input type="checkbox" />            <p>绘制个性化封面</p>            </div><div class='checkbox blue'><input type="checkbox" />            <p>应用封面</p>            </div><h2 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h2><div class='checkbox gray checked'><input type="checkbox" checked="checked"/>            <p>引入彩色图标</p>            </div><div class='checkbox red checked'><input type="checkbox" checked="checked"/>            <p>引入动态图标</p>            </div><div class='checkbox yellow'><input type="checkbox" />            <p>深色模式适配</p>            </div>]]></content>
       
       
       
@@ -36,17 +36,6 @@
     
   
   
-    
-    
-    <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
     
     
     <entry>
@@ -83,6 +72,17 @@
     
     
     <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>友链</title>
       <link href="/link/index.html"/>
       <url>/link/index.html</url>
@@ -94,9 +94,9 @@
     
     
     <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -105,9 +105,9 @@
     
     
     <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
