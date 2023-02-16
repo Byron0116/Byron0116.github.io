@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>JavaSE | 异常处理 (Exception)</title>
+      <link href="/2023/02/16/JavaSE_02_Exception/"/>
+      <url>/2023/02/16/JavaSE_02_Exception/</url>
+      
+        <content type="html"><![CDATA[<h1 id="异常的概念"><a href="#异常的概念" class="headerlink" title="异常的概念"></a>异常的概念</h1><p>异常是程序在运行中由于一些特殊原因出现的<span class='p red'>错误</span>，它会中断正在执行的程序。</p><h2 id="错误的分类"><a href="#错误的分类" class="headerlink" title="错误的分类"></a>错误的分类</h2><ol><li>编译错误<br> 因为所编写的程序存在语法问题，编译系统能直接检测出来。</li><li>运行错误<br> 程序在运行的时候才会出现的错误。除了因算法逻辑错误导致的，其他运行错误还分为两大类。<ul><li>致命性的错误<br>  如Java 虚拟机产生错误、内存耗尽，系统硬件故障、动态链接失败等。这类错误应用程序无法处理。</li><li>一般性的（非致命性）错误<br>  是因编程错误或偶尔的外在因素导致的一般性问题，如：除数为零、数组越界、负数开平方，网络连接中断、读取不存在的文件等，<span class='p red'>通过某种处理后，程序还能继续运行</span>。一般所说的异常(Exception)都是指这类错误。</li></ul></li></ol><h2 id="异常类的层次及分类"><a href="#异常类的层次及分类" class="headerlink" title="异常类的层次及分类"></a>异常类的层次及分类</h2><p><img src="https://tuchuang.voooe.cn/images/2023/02/16/Exception1.png" alt="异常类的层次" title="异常类的层次"><br>所有的异常类是从 java.lang.Exception 类继承的子类。<br>Exception 类是 Throwable 类的子类。除了Exception类外，Throwable还有一个子类Error。<br><div class="note info flat"><p>Error 用来指示运行时<span class='p red'>环境</span>发生的错误，属于系统级别的错误。Java程序通常不捕获致命性错误Error。Error一般发生在严重故障时，它们在Java程序处理的范畴之外。一般地，程序不会从Error中恢复。</p></div><br>Exception类有两个主要的子类：RuntimeException 类 和 Checked Exception 类。也就是说异常分为两类：</p><ul><li><p>运行时异常<br>在编译阶段不会出现异常提醒，而在运行时会出现，不要求强制处理这类异常。(如:数组越界异常)<br>运行时异常包括RuntimeException类自身及它的子类。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//运行时异常</span></span><br><span class="line">        <span class="type">int</span>[] arr=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        System.out.println(arr[<span class="number">10</span>]);<span class="comment">//ArrayIndexOutOfBoundsException</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>编译时异常<br>编译阶段就会出现异常提醒的，必须强制处理这类异常否则编译不通过。(如:日期解析异常)</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException &#123;</span><br><span class="line">        <span class="comment">//编译时异常</span></span><br><span class="line">        String time=<span class="string">&quot;2030年1月1日&quot;</span>;</span><br><span class="line">        SimpleDateFormat sdf=<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy年MM月dd日&quot;</span>);</span><br><span class="line">        Date date=sdf.parse(time);<span class="comment">//若未处理异常则会报错 Unhandled exception: java.text.ParseException</span></span><br><span class="line">        System.out.println(date);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><h2 id="异常的作用"><a href="#异常的作用" class="headerlink" title="异常的作用"></a>异常的作用</h2><ol><li>用来查询Bug的关键参考信息。</li><li>可以作为方法内部的一种特殊返回值，以便通知调用者底层的执行情况。</li></ol><h1 id="异常的处理方式"><a href="#异常的处理方式" class="headerlink" title="异常的处理方式"></a>异常的处理方式</h1><p>可分为 JVM默认的处理方式、捕获异常(自己处理)、抛出异常(交给调用者)。</p><h2 id="JVM默认的处理方式"><a href="#JVM默认的处理方式" class="headerlink" title="JVM默认的处理方式"></a>JVM默认的处理方式</h2><p>把异常的名称，异常原因及异常出现的位置等信息输出在了控制台，以红色字体显示。<br>程序停止执行，在异常下面的代码不会再执行。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo3</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;异常之上的代码正常运行&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;发生了异常&quot;</span>+<span class="number">2</span>/<span class="number">0</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;异常之下的代码正常运行&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>输出<br><div class="note danger flat"><p>异常之上的代码正常运行<br>Exception in thread “main” java.lang.ArithmeticException: / by zero<br>    at com.learning.A01ExceptionDemo.ExceptionDemo3.main(ExceptionDemo3.java:11)</p></div></p><h2 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h2><p>格式如下：<br><div class="note flat"><p><span class='p blue'>try</span>{<br>    可能出现异常的代码;<br>} <span class='p blue'>catch</span>(异常类名 变量名){<br>    处理异常的代码;<br>}</p></div><br>目的:当代码出现异常时，让程序继续往下执行。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo4</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//可能出现异常的代码</span></span><br><span class="line">            System.out.println(arr[<span class="number">10</span>]);</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            如果此处出现异常，程序就会在这里创建一个该异常的对象</span></span><br><span class="line"><span class="comment">            new ArrayIndexOutOfBoundsException();</span></span><br><span class="line"><span class="comment">            拿着这个对象到catch的小括号中对比，看括号中的变量e是否可以接收这个对象</span></span><br><span class="line"><span class="comment">            如果能被接收，就表示该异常就被捕获，执行catch里面对应的代码</span></span><br><span class="line"><span class="comment">            当catch里面所有的代码执行完毕，继续执行try...catch体系下面的其他代码</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">        &#125;<span class="keyword">catch</span> (ArrayIndexOutOfBoundsException e)&#123;</span><br><span class="line">            <span class="comment">//出现了ArrayIndexOutOfBoundsException,我该如何处理</span></span><br><span class="line">            System.out.println(<span class="string">&quot;索引越界!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;捕获异常成功!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>输出<br><div class="note success flat"><p>索引越界!<br>捕获异常成功!</p></div></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaSE </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JavaSE | 面向对象 (Object Oriented)</title>
       <link href="/2022/12/13/JavaSE_01_OOP/"/>
       <url>/2022/12/13/JavaSE_01_OOP/</url>
@@ -50,17 +69,6 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
-      
-        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }    /* 小冰分类分类磁铁黑夜模式适配 */  /* 一般状态 */  [data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;  }  /* 鼠标悬浮状态 */  [data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;  }    /* 翻页按钮居中 */  #pagination {  width: 100%;  margin: auto;  }    svg.icon {    width: 1.5em; height: 1.5em;    /* width和height定义图标的默认宽度和高度*/    vertical-align: -0.15em;    fill: currentColor;    overflow: hidden;  }    /* 文章页H1-H6图标样式效果 */  /* 控制风车转动速度 4s那里可以自己调节快慢 */  h1::before,  h2::before,  h3::before,  h4::before,  h5::before,  h6::before {    -webkit-animation: ccc 4s linear infinite;    animation: ccc 4s linear infinite;  }  /* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动，相同数字部分记得统一修改 */  @-webkit-keyframes ccc {    0% {      -webkit-transform: rotate(0deg);      transform: rotate(0deg);    }    to {      -webkit-transform: rotate(-1turn);      transform: rotate(-1turn);    }  }  @keyframes ccc {    0% {      -webkit-transform: rotate(0deg);      transform: rotate(0deg);    }    to {      -webkit-transform: rotate(-1turn);      transform: rotate(-1turn);    }  }  /* 设置风车颜色 */  #content-inner.layout h1::before {    color: #ef50a8;    margin-left: -1.55rem;    font-size: 1.3rem;    margin-top: -0.23rem;  }  #content-inner.layout h2::before {    color: #fb7061;    margin-left: -1.35rem;    font-size: 1.1rem;    margin-top: -0.12rem;  }  #content-inner.layout h3::before {    color: #ffbf00;    margin-left: -1.22rem;    font-size: 0.95rem;    margin-top: -0.09rem;  }  #content-inner.layout h4::before {    color: #a9e000;    margin-left: -1.05rem;    font-size: 0.8rem;    margin-top: -0.09rem;  }  #content-inner.layout h5::before {    color: #57c850;    margin-left: -0.9rem;    font-size: 0.7rem;    margin-top: 0rem;  }  #content-inner.layout h6::before {    color: #5ec1e0;    margin-left: -0.9rem;    font-size: 0.66rem;    margin-top: 0rem;  }  /* s设置风车hover动效 6s那里可以自己调节快慢*/  #content-inner.layout h1:hover,  #content-inner.layout h2:hover,  #content-inner.layout h3:hover,  #content-inner.layout h4:hover,  #content-inner.layout h5:hover,  #content-inner.layout h6:hover {    color: var(--theme-color);  }  #content-inner.layout h1:hover::before,  #content-inner.layout h2:hover::before,  #content-inner.layout h3:hover::before,  #content-inner.layout h4:hover::before,  #content-inner.layout h5:hover::before,  #content-inner.layout h6:hover::before {    color: var(--theme-color);    -webkit-animation: ccc 6s linear infinite;    animation: ccc 6s linear infinite;  }]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>分类</title>
       <link href="/categories/index.html"/>
       <url>/categories/index.html</url>
@@ -72,11 +80,11 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[/* 页脚与头图透明 */#footer {    background: transparent !important;  }  #page-header {    background: transparent !important;  }    /* 白天模式遮罩透明 */  #footer::before {    background: transparent !important;  }  #page-header::before {    background: transparent !important;  }    /* 夜间模式遮罩透明 */  [data-theme="dark"] #footer::before {    background: transparent !important;  }  [data-theme="dark"] #page-header::before {    background: transparent !important;  }    /* 小冰分类分类磁铁黑夜模式适配 */  /* 一般状态 */  [data-theme="dark"] .magnet_link_context {  background: #1e1e1e;  color: antiquewhite;  }  /* 鼠标悬浮状态 */  [data-theme="dark"] .magnet_link_context:hover {  background: #3ecdf1;  color: #f2f2f2;  }    /* 翻页按钮居中 */  #pagination {  width: 100%;  margin: auto;  }    svg.icon {    width: 1.5em; height: 1.5em;    /* width和height定义图标的默认宽度和高度*/    vertical-align: -0.15em;    fill: currentColor;    overflow: hidden;  }    /* 文章页H1-H6图标样式效果 */  /* 控制风车转动速度 4s那里可以自己调节快慢 */  h1::before,  h2::before,  h3::before,  h4::before,  h5::before,  h6::before {    -webkit-animation: ccc 4s linear infinite;    animation: ccc 4s linear infinite;  }  /* 控制风车转动方向 -1turn 为逆时针转动，1turn 为顺时针转动，相同数字部分记得统一修改 */  @-webkit-keyframes ccc {    0% {      -webkit-transform: rotate(0deg);      transform: rotate(0deg);    }    to {      -webkit-transform: rotate(-1turn);      transform: rotate(-1turn);    }  }  @keyframes ccc {    0% {      -webkit-transform: rotate(0deg);      transform: rotate(0deg);    }    to {      -webkit-transform: rotate(-1turn);      transform: rotate(-1turn);    }  }  /* 设置风车颜色 */  #content-inner.layout h1::before {    color: #ef50a8;    margin-left: -1.55rem;    font-size: 1.3rem;    margin-top: -0.23rem;  }  #content-inner.layout h2::before {    color: #fb7061;    margin-left: -1.35rem;    font-size: 1.1rem;    margin-top: -0.12rem;  }  #content-inner.layout h3::before {    color: #ffbf00;    margin-left: -1.22rem;    font-size: 0.95rem;    margin-top: -0.09rem;  }  #content-inner.layout h4::before {    color: #a9e000;    margin-left: -1.05rem;    font-size: 0.8rem;    margin-top: -0.09rem;  }  #content-inner.layout h5::before {    color: #57c850;    margin-left: -0.9rem;    font-size: 0.7rem;    margin-top: 0rem;  }  #content-inner.layout h6::before {    color: #5ec1e0;    margin-left: -0.9rem;    font-size: 0.66rem;    margin-top: 0rem;  }  /* s设置风车hover动效 6s那里可以自己调节快慢*/  #content-inner.layout h1:hover,  #content-inner.layout h2:hover,  #content-inner.layout h3:hover,  #content-inner.layout h4:hover,  #content-inner.layout h5:hover,  #content-inner.layout h6:hover {    color: var(--theme-color);  }  #content-inner.layout h1:hover::before,  #content-inner.layout h2:hover::before,  #content-inner.layout h3:hover::before,  #content-inner.layout h4:hover::before,  #content-inner.layout h5:hover::before,  #content-inner.layout h6:hover::before {    color: var(--theme-color);    -webkit-animation: ccc 6s linear infinite;    animation: ccc 6s linear infinite;  }]]></content>
       
     </entry>
     
@@ -105,6 +113,17 @@
     
     
     <entry>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -116,9 +135,9 @@
     
     
     <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
