@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>DataStructure | 概论</title>
+      <link href="/2023/02/28/DataStructure_01_introduction/"/>
+      <url>/2023/02/28/DataStructure_01_introduction/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据结构的概念"><a href="#数据结构的概念" class="headerlink" title="数据结构的概念"></a>数据结构的概念</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul><li><strong>数据(data)</strong><br>  数据是 <strong><span class='p red'>信息的载体</span></strong>，是描述客观事物属性的数、字符及所有 <strong><span class='p red'>能输入到计算机中并被计算机程序识别和处理的符号的集合</span></strong>。</li><li>数据元素(data element)<br>  数据元素是数据的基本单位，通常作为一个整体进行考虑和处理。</li><li>数据项(data item)<br>  一个数据元素可由若干数据项组成，数据项是构成数据元素的不可分割的最小单位。<br>  数据项又可分为：<ol><li>初等项<br> 在数据处理时不能再分割的最小单位。</li><li>组合项<br> 由初等项组合而成。</li></ol></li></ul><div class="note flat"><p>例如，对于学籍管理文件来说，每一个学生记录就是数据元素，而学生的性别、籍贯、成绩等就是数据项。<br>而性别、籍贯为初等项，学生成绩为组合项，可划分为数学成绩、英语成绩等初等项。</p></div><ul><li><p>结构<br>  在数据处理中涉及的数据元素之间都不会是孤立的，数据元素之间的 <strong><span class='p red'>关系</span></strong> 称为结构。</p>  <div class="note flat"><p>例如，在n个网站之间建立通信网络，要求网络中任一网站出现故障，整个网络仍然保持畅通，这样所有网站之间形成网状关   系。</p></div></li><li><p>数据结构<br>  数据结构由某一数据元素的集合和该集合中数据元素之间的关系组成。记为：</p><script type="math/tex; mode=display">  Data\_ Structure = \left \{ D,R \right \}</script><p>  其中D是某一元素的集合，R是该集合中所有数据元素之间的关系的有限集合。</p></li><li><p>数据类型<br>  类型是一组值的集合。类型可分为：</p><ul><li>原子类型<br>  每个数据都无法再分，如一个整数、浮点数、字符、指针等都是无法再分割的整体。</li><li>结构类型<br>  结构类型由原子类型按照一定的规则构造而成，如一个银行账户一般包括姓名、地址、账号、余额等原子类型。<br>数据结构是一种类型(一组值的集合)以及定义在此集合上的一组操作的总称。<div class="note flat"><p>例如，对于bool类型来说，其值的范围为true、false，可用的操作有与、或、非等等。<br>对于int类型，其值的范围为-2147483648～2147483647，可用的操作有：加、减、乘、除等等。</p></div></li></ul></li><li><p>抽象数据类型(<em>Abstract Data Type</em>,ADT)<br>  抽象数据类型通常是指由用户定义，用以表示应用问题的 <strong><span class='p red'>数据模型</span></strong>，是将数据结构作为一个软件构件的实现。ADT只关心数据的逻辑结构和数据的运算，不关心数据的存储结构。<br>  抽象数据类型由基本的数据类型组成，并包括一组相关的操作。</p>  <div class="note flat"><p>例如，C中struct，C++中的struct或class。</p></div></li></ul><h2 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h2><h3 id="数据逻辑结构"><a href="#数据逻辑结构" class="headerlink" title="数据逻辑结构"></a>数据逻辑结构</h3><p>指反映数据元素之间的逻辑关系的数据结构，其中的逻辑关系是指 <strong><span class='p red'>数据元素之间的前后间关系</span></strong>，而与他们在计算机中的存储位置无关。逻辑结构包括：</p><ol><li>集合<br> 数据结构中的元素之间除了“同属一个集合” 的相互关系外，别无其他关系。</li><li>线性结构<br> 数据结构中的元素存在一对一的相互关系。 <div class="note info flat"><p>对于线性结构中的每一数据元素：<br>除了第一个元素，所有元素都有唯一前驱;<br>除了最后一个元素，所有元素都有唯一后继。</p></div></li><li>树形结构<br> 数据结构中的元素存在一对多的相互关系。</li><li>图结构<br> 数据结构中的元素存在多对多的相互关系。<br>逻辑结构可分为线性结构和非线性结构，以上集合、树形结构、图结构均为非线性结构。</li></ol><h3 id="数据的存储结构-物理结构"><a href="#数据的存储结构-物理结构" class="headerlink" title="数据的存储结构(物理结构)"></a>数据的存储结构(物理结构)</h3><p>数据的逻辑结构在计算机存储空间中的存放形式称为数据的物理结构(也称为存储结构)。即如何用计算机表示数据元素的逻辑关系。一般来说，一种数据结构的逻辑结构根据需要可以表示成多种存储结构，常用的存储结构有：</p><ol><li>顺序存储<br> 把逻辑上相邻的元素存储在物理位置上相邻的存储单元中，元素之间的逻辑关系由存储单元的邻接关系来体现。</li><li>链式存储<br> 逻辑上相邻的元素在物理位置上可以不相邻，借助指向元素存储位置的指针来表示元素之间的逻辑关系。</li><li>索引存储<br> 在存储元素信息的同时，还建立附加的索引表。索引表中的每一项称为索引项(索引表中的一条记录)，索引项的一般形式是：<script type="math/tex; mode=display"> \left ( Key, Address \right )</script> 其中关键码Key是能够唯一标识一个数据元素的数据项。如可以用学号唯一标识一个学生。<br> 索引又可分为：<ul><li>稠密索引(dense index)<br>  每一个结点在索引表中都有一个索引项。<br>  该索引项中的地址指向结点所在的物理位置。</li><li>稀疏索引(sparse index)<br>  一组相邻的结点在索引表中只有一个索引项。<br>  该索引项中的地址指向一组相邻结点的起始位置。</li></ul></li><li>哈希存储(散列存储)<br> 根据结点的关键码通过一个函数计算直接得到该结点的存储地址。<div class="note warning flat"><ol><li>数据的存储结构会影响存储空间分配的方便程度。<br> 对于不同的问题、需求，要采用合适的存储结构。</li><li>数据的存储结构会影响对数据运算的速度。</li></ol></div>存储结构可分为顺序存储和非顺序存储，以上链式存储、索引存储和哈希存储均为非顺序存储。</li></ol><h3 id="数据的运算"><a href="#数据的运算" class="headerlink" title="数据的运算"></a>数据的运算</h3><p>施加在数据上的运算包括运算的定义和实现。<br>数据的运算是定义在逻辑结构上的，运算的实现要在存储结构上进行。</p><ul><li>一般有以下几种常用运算：<ol><li>检索<br> 检索就是在数据结构里查找满足一定条件的节点。一般是给定一个某字段的值，找具有该字段值的结点。 </li><li>插入<br> 往数据结构中增加新的结点。</li><li>删除<br> 把指定的结点从数据结构中去掉。</li><li>更新<br> 改变指定结点的一个或多个字段的值。</li><li>排序<br> 把结点按某种指定的顺序重新排列。例如递增或递减。</li></ol></li></ul><h1 id="算法的定义"><a href="#算法的定义" class="headerlink" title="算法的定义"></a>算法的定义</h1><h1 id="算法的"><a href="#算法的" class="headerlink" title="算法的"></a>算法的</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> DataStructure </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JavaSE | 常用API</title>
       <link href="/2023/02/27/JavaSE_04_API/"/>
       <url>/2023/02/27/JavaSE_04_API/</url>
@@ -129,6 +148,17 @@
     
     
     <entry>
+      <title>电影</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/js/runtime.js"/>
       <url>/js/runtime.js</url>
@@ -151,9 +181,9 @@
     
     
     <entry>
-      <title>电影</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -165,17 +195,6 @@
       <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
